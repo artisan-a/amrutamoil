@@ -45,7 +45,10 @@
                     <a href="{{ route('home') }}" class="flex items-center gap-2">
                         <!-- Brand Logo -->
                         <img src="{{ asset('images/logo.png') }}" alt="Amrutam Oil Logo" class="h-10 w-auto">
-                        <span class="font-bold text-2xl tracking-tight text-amber-900 font-serif">Amrutam</span>
+                        <img src="{{ asset('images/amrutam-wordmark.png') }}" alt="Amrutam"
+                            class="h-7 w-auto max-w-[220px] object-contain"
+                            onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                        <span class="hidden font-bold text-2xl tracking-tight text-amber-900 font-serif">Amrutam</span>
                     </a>
                 </div>
 
@@ -93,6 +96,8 @@
                 <a href="{{ route('process') }}"
                     class="{{ request()->routeIs('process') ? 'bg-amber-50 text-amber-600 font-bold' : 'text-stone-700 font-medium hover:bg-stone-50' }} block px-3 py-2 rounded-md transition">Our
                     Process</a>
+                <a href="{{ route('blog.index') }}"
+                    class="{{ request()->routeIs('blog.*') ? 'bg-amber-50 text-amber-600 font-bold' : 'text-stone-700 font-medium hover:bg-stone-50' }} block px-3 py-2 rounded-md transition">Blog</a>
                 <a href="{{ route('contact') }}"
                     class="{{ request()->routeIs('contact') ? 'bg-amber-50 text-amber-600 font-bold' : 'text-stone-700 font-medium hover:bg-stone-50' }} block px-3 py-2 rounded-md transition">Contact
                     Us</a>
