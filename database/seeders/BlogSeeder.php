@@ -19,7 +19,7 @@ class BlogSeeder extends Seeder
                 'category' => 'Health Benefits',
                 'excerpt' => 'For hundreds of years, Indian households have depended on traditionally extracted oils for cooking. Discover why cold pressed groundnut oil is making a powerful comeback — and for all the right reasons.',
                 'content' => '<h2>What is Cold Pressed Groundnut Oil?</h2>
-<p>Cold pressed groundnut oil (also known as <strong>wood pressed groundnut oil</strong> or <strong>Kachi Ghani moongfali tel</strong>) is extracted from raw peanuts using a traditional wooden press at low temperatures — typically below 40–45°C. Unlike commercial refined oils that go through chemical solvent extraction, bleaching, and deodorizing, cold pressed oil simply squeezes the oil out of peanuts — <strong>nothing added, nothing removed</strong>.</p>
+<p>Cold pressed groundnut oil (also known as <strong>cold pressed groundnut oil</strong> or <strong>Kachi Ghani moongfali tel</strong>) is extracted from raw peanuts using a traditional wooden press at low temperatures — typically below 40–45°C. Unlike commercial refined oils that go through chemical solvent extraction, bleaching, and deodorizing, cold pressed oil simply squeezes the oil out of peanuts — <strong>nothing added, nothing removed</strong>.</p>
 
 <h2>Top 7 Benefits of Cold Pressed Groundnut Oil</h2>
 
@@ -50,7 +50,7 @@ class BlogSeeder extends Seeder
 <p>Rich in Vitamin E and linoleic acid, cold pressed groundnut oil moisturizes dry skin, strengthens hair roots, and reduces scalp dryness when used topically.</p>
 
 <h2>About Amrutam Ground Nut Oil</h2>
-<p><strong>Amrutam Ground Nut Oil</strong> is manufactured using the traditional wood pressing method. Our oil is 100% natural, chemical-free, cold pressed below 45°C, unrefined and unbleached, and available in 1 KG, 5 KG, and 15 KG packs.</p>
+<p><strong>Amrutam Ground Nut Oil</strong> is manufactured using the traditional cold pressing method. Our oil is 100% natural, chemical-free, cold pressed below 45°C, unrefined and unbleached, and available in 1 KG, 5 KG, and 15 KG packs.</p>
 <p><a href="/products">View Our Products</a> | <a href="/contact">Contact Us</a></p>
 
 <h2>FAQ</h2>
@@ -105,7 +105,7 @@ class BlogSeeder extends Seeder
 <p>❌ Mostly a myth. Cold pressed <strong>groundnut oil</strong> has a high smoke point (160°C+) and is excellent for frying and tempering.</p>
 
 <h2>About Amrutam Ground Nut Oil</h2>
-<p>Amrutam Ground Nut Oil is traditionally wood pressed, chemical-free, and made for families who care about what goes into their food. Available in 1 KG, 5 KG, and 15 KG sizes.</p>
+<p>Amrutam Ground Nut Oil is traditionally cold pressed, chemical-free, and made for families who care about what goes into their food. Available in 1 KG, 5 KG, and 15 KG sizes.</p>
 <p><a href="/products">Shop Now</a> | <a href="/contact">Contact for Bulk Orders</a></p>
 
 <h2>FAQ</h2>
@@ -115,7 +115,7 @@ class BlogSeeder extends Seeder
 <p>Yes — and that is a good thing! The aroma is a sign that the natural compounds are intact and food will taste more delicious.</p>
 
 <h2>Conclusion</h2>
-<p>The choice is really between nutrition and convenience. Cold pressed oil is what your body actually needs — pure, natural, and full of the goodness that nature put in those peanuts. <strong><a href="/products">Try Amrutam Cold Pressed Groundnut Oil — 100% pure, traditionally wood pressed.</a></strong></p>',
+<p>The choice is really between nutrition and convenience. Cold pressed oil is what your body actually needs — pure, natural, and full of the goodness that nature put in those peanuts. <strong><a href="/products">Try Amrutam Cold Pressed Groundnut Oil — 100% pure, traditionally cold pressed.</a></strong></p>',
                 'is_published' => true,
                 'published_at' => now()->subDays(7),
             ],
@@ -156,12 +156,12 @@ class BlogSeeder extends Seeder
 <p>Groundnut oil has been the staple cooking oil of Gujarat, Rajasthan, Maharashtra, and many other states for centuries. Switching to cold pressed groundnut oil is not just a health choice — it is a return to authentic Indian culinary roots.</p>
 
 <h2>About Amrutam Ground Nut Oil</h2>
-<p>At <strong>Amrutam Ground Nut Oil</strong>, we press our oil the old-fashioned way — slowly, at low temperatures, with no chemicals and no shortcuts. Our groundnut oil is sourced from quality Indian peanuts, extracted using traditional wood pressing, and available in 1 KG, 5 KG, and 15 KG sizes.</p>
+<p>At <strong>Amrutam Ground Nut Oil</strong>, we press our oil the old-fashioned way — slowly, at low temperatures, with no chemicals and no shortcuts. Our groundnut oil is sourced from quality Indian peanuts, extracted using traditional cold pressing, and available in 1 KG, 5 KG, and 15 KG sizes.</p>
 <p><a href="/products">Browse Products</a> | <a href="/contact">Get a Bulk Inquiry Quote</a></p>
 
 <h2>FAQ</h2>
 <h3>Which groundnut oil is best for Indian cooking?</h3>
-<p>Cold pressed (wood pressed) groundnut oil is the best choice. It retains natural nutrients, has a high smoke point, and adds authentic flavor to Indian dishes.</p>
+<p>Cold pressed groundnut oil is the best choice. It retains natural nutrients, has a high smoke point, and adds authentic flavor to Indian dishes.</p>
 <h3>Is groundnut oil better than sunflower oil?</h3>
 <p>Cold pressed groundnut oil is nutritionally superior to refined sunflower oil. It has more natural antioxidants, better fat balance, and a higher smoke point.</p>
 <h3>Is groundnut oil and peanut oil the same?</h3>
@@ -176,7 +176,7 @@ class BlogSeeder extends Seeder
                 'title' => 'How Cold Pressed Oil is Made — Traditional Oil Extraction Process Explained',
                 'slug' => 'how-cold-pressed-oil-is-made',
                 'meta_title' => 'How Cold Pressed Oil is Made — Kachi Ghani Process | Amrutam Oil',
-                'meta_description' => 'Learn step-by-step how cold pressed oil is made using the traditional Kachi Ghani wood pressing method. Know why this ancient process produces the purest oil.',
+                'meta_description' => 'Learn step-by-step how cold pressed oil is made using the traditional Kachi Ghani cold pressing method. Know why this ancient process produces the purest oil.',
                 'category' => 'Our Process',
                 'excerpt' => 'Have you ever wondered what makes cold pressed oil different? Why does it cost more? Why does it smell richer? The answer lies in how it is made.',
                 'content' => '<h2>The Traditional Indian Method — Kachi Ghani</h2>

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Our Process — Traditional Wood Pressed Oil | Amrutam Ground Nut Oil')
+@section('title', 'Our Process — Traditional cold Pressed Oil | Amrutam Ground Nut Oil')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 <section class="relative min-h-[500px] flex items-center justify-center py-24 text-center overflow-hidden bg-stone-900">
     {{-- Background Image & Overlay --}}
     <img src="https://images.unsplash.com/photo-1596647248564-964689cf61bb?auto=format&fit=crop&w=1200&q=80"
-        class="absolute inset-0 w-full h-full object-cover" alt="Heritage Wood Press Process">
+        class="absolute inset-0 w-full h-full object-cover" alt="Heritage cold Press Process">
     <div class="absolute inset-0 bg-stone-900/60 mix-blend-multiply"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-stone-900/40"></div>
     <div class="absolute inset-0 bg-amber-900/20 mix-blend-overlay"></div>
@@ -19,7 +19,7 @@
             Our Traditional Legacy
         </span>
         <h1 class="text-5xl md:text-7xl font-black font-serif mb-6 leading-tight text-white drop-shadow-2xl">
-            The Art of <br><span class="text-amber-500 italic">Wood Pressing</span>
+            The Art of <br><span class="text-amber-500 italic">cold Pressing</span>
         </h1>
         <p class="text-xl text-stone-200 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-lg">
             A slow, heat-free, chemical-free craft that has been honoured in Indian households for centuries.
@@ -172,7 +172,7 @@
                 <div class="lg:pl-8">
                     <span class="text-amber-600 font-bold text-sm uppercase tracking-widest block mb-3">Step Three — The
                         Heart of the Process</span>
-                    <h3 class="text-3xl font-bold text-stone-900 font-serif mb-4">Wood Pressing (Kachi Ghani)</h3>
+                    <h3 class="text-3xl font-bold text-stone-900 font-serif mb-4">cold Pressing (Kachi Ghani)</h3>
                     <p class="text-stone-600 text-lg leading-relaxed mb-6">The cleaned kernels are pressed in our
                         traditional wooden ghani at a slow, gentle speed. <strong class="text-stone-800">No external
                             heat is applied</strong> — the temperature stays below 45°C throughout. This preserves all

@@ -42,7 +42,7 @@
         <div class="bg-gradient-to-br from-amber-50 to-stone-50 border border-amber-100 rounded-3xl p-8 text-center">
             <div class="text-3xl mb-3">🌿</div>
             <h3 class="text-2xl font-bold text-stone-900 font-serif mb-3">Try Amrutam Cold Pressed Groundnut Oil</h3>
-            <p class="text-stone-500 mb-6 max-w-lg mx-auto">100% pure, chemical-free, traditionally wood pressed. Available in 1 KG, 5 KG, and 15 KG packs.</p>
+            <p class="text-stone-500 mb-6 max-w-lg mx-auto">100% pure, chemical-free, traditionally cold pressed. Available in 1 KG, 5 KG, and 15 KG packs.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="{{ route('products.index') }}" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-xl transition">Shop Now</a>
                 <a href="{{ route('contact') }}" class="border-2 border-stone-200 hover:border-amber-400 text-stone-700 hover:text-amber-600 font-bold py-3 px-8 rounded-xl transition">Contact Us</a>

@@ -65,7 +65,7 @@
                     <p>
                         Welcome to <strong>Amrutam Ground Nut Oil</strong>, where tradition meets purity. For
                         generations, we have perfected the art of extracting oil using the timeless <em>Kachi Ghani
-                            (wood pressing)</em> method.
+                            (cold pressing)</em> method.
                     </p>
                     <p>
                         Unlike highly refined commercial oils that use heat and chemicals, our oil is cold-pressed

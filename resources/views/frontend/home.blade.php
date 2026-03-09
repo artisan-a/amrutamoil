@@ -40,7 +40,7 @@
                 </h1>
 
                 <p class="text-lg text-stone-600 mb-10 max-w-lg leading-relaxed">
-                    Experience the authentic taste and health benefits of traditional wood-pressed (Kachi Ghani) oil.
+                    Experience the authentic taste and health benefits of traditional cold-pressed oil.
                     Unrefined, unbleached, and full of natural nutrients.
                 </p>
 
