@@ -7,8 +7,6 @@
 {{-- Hero --}}
 <section class="relative min-h-[500px] flex items-center justify-center py-24 text-center overflow-hidden bg-stone-900">
     {{-- Background Image & Overlay --}}
-    <img src="https://images.unsplash.com/photo-1596647248564-964689cf61bb?auto=format&fit=crop&w=1200&q=80"
-        class="absolute inset-0 w-full h-full object-cover" alt="Heritage cold Press Process">
     <div class="absolute inset-0 bg-stone-900/60 mix-blend-multiply"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-stone-900/40"></div>
     <div class="absolute inset-0 bg-amber-900/20 mix-blend-overlay"></div>
