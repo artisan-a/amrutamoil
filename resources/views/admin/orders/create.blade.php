@@ -46,6 +46,10 @@
         font-weight: 600;
         letter-spacing: 0.025em;
     }
+
+    #itemsContainer .ts-wrapper {
+        width: 100%;
+    }
 </style>
 @endpush
 
@@ -320,7 +324,7 @@
     @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
     <script>
-        window.productsData        !! json_encode($productsJson) !!};
+        window.productsData = @json($productsJson);
     </script>
     <script src="{{ asset('js/admin-order-create.js') }}"></script>
     @endpush

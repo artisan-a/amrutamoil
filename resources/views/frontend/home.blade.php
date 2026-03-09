@@ -81,10 +81,10 @@
             <div class="flex justify-center lg:justify-end" style="animation: fadeInRight 1s ease 0.3s both;">
                 <div class="relative">
                     <div class="absolute inset-0 rounded-[40%] bg-amber-200 blur-3xl opacity-30 scale-110"></div>
-                    <div class="relative w-72 h-80 lg:w-96 lg:h-[440px] bg-gradient-to-br from-amber-400 via-yellow-300 to-amber-500 rounded-[40%] shadow-2xl flex items-center justify-center overflow-hidden"
+                    <div class="relative w-72 h-80 lg:w-96 lg:h-[440px] bg-gradient-to-br from-amber-50 via-yellow-100 to-amber-100 rounded-[40%] shadow-2xl border border-amber-200/60 flex items-center justify-center overflow-hidden"
                         style="animation:floatY 4s ease-in-out infinite;">
                         <img src="{{ asset('images/peanut.png') }}" alt="Amrutam Brand"
-                            class="w-full h-full object-cover opacity-95 mix-blend-overlay scale-110">
+                            class="w-full h-full object-cover opacity-100 scale-105">
                     </div>
                     <div class="absolute -bottom-6 -left-8 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3"
                         style="animation: fadeInUp 0.6s ease 0.8s both;">

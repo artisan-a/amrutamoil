@@ -22,32 +22,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         var html = '';
-        html += '<div class="grid grid-cols-1 lg:grid-cols-12 gap-4 px-6 py-4 items-center relative">';
+        html += '<div class="grid grid-cols-12 gap-4 px-6 py-4 items-center relative">';
 
         // Product Column
-        html += '<div class="lg:col-span-6">';
-        html += '<label class="lg:hidden block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Product Description</label>';
+        html += '<div class="col-span-6">';
         html += '<select class="product-select" name="items[' + idx + '][product_id]" required>' + opts + '</select>';
         html += '<div class="mt-1.5 min-h-[16px] flex gap-2 items-center"><span class="stock-badge hidden text-[9px]"></span></div>';
         html += '</div>';
 
         // Qty Column
-        html += '<div class="lg:col-span-2">';
-        html += '<label class="lg:hidden block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1 text-center">Qty</label>';
+        html += '<div class="col-span-2">';
         html += '<div class="flex items-center justify-center">';
         html += '<input type="number" name="items[' + idx + '][quantity]" min="1" value="1" class="quantity-input w-20 border-stone-200 rounded-lg text-center py-2 bg-stone-50/50 focus:bg-white focus:border-amber-500 focus:ring-amber-500 font-bold text-stone-700 text-sm" required />';
         html += '</div>';
         html += '</div>';
 
         // Price Column
-        html += '<div class="lg:col-span-2 text-right">';
-        html += '<label class="lg:hidden block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Price</label>';
+        html += '<div class="col-span-2 text-right">';
         html += '<input type="text" readonly class="unit-price w-full border-0 bg-transparent text-right py-2 font-mono text-stone-400 text-xs" value="₹0.00" />';
         html += '</div>';
 
         // Total Column
-        html += '<div class="lg:col-span-2 text-right pr-8 lg:pr-0">';
-        html += '<label class="lg:hidden block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Total</label>';
+        html += '<div class="col-span-2 text-right pr-8">';
         html += '<input type="text" readonly class="line-total w-full border-0 bg-transparent text-right py-2 font-mono font-bold text-amber-600 text-sm" value="₹0.00" />';
         html += '</div>';
 
