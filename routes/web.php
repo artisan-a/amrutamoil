@@ -6,16 +6,26 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\InquiryController as AdminInquiryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\AdvertisementController as AdminAdvertisementController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Models\Advertisement;
 
 Route::get('/', function () {
     $products = \App\Models\Product::all();
-    return view('frontend.home', compact('products'));
+    $activePopupAd = Advertisement::query()
+        ->active()
+        ->withinDateRange()
+        ->where('type', 'popup')
+        ->latest()
+        ->first();
+
+    return view('frontend.home', compact('products', 'activePopupAd'));
 })->name('home');
 
 Route::get('/about', function () {
@@ -39,6 +49,7 @@ Route::post('/inquiry', [InquiryController::class , 'store'])->name('inquiry.sto
 // Blog routes
 Route::get('/blog', [BlogController::class , 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class , 'show'])->name('blog.show');
+Route::get('/advertisements/active-popup', [AdvertisementController::class, 'activePopup'])->name('advertisements.active-popup');
 
 Route::get('/dashboard', function () {
     $totalCustomers = \App\Models\Customer::count();
@@ -54,6 +65,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('inquiries', AdminInquiryController::class)->only(['index', 'show', 'destroy']);
     Route::resource('contacts', AdminContactController::class)->only(['index', 'destroy']);
     Route::resource('blog', AdminBlogController::class);
+    Route::resource('advertisements', AdminAdvertisementController::class)->except(['show']);
+    Route::patch('advertisements/{advertisement}/toggle', [AdminAdvertisementController::class, 'toggleStatus'])->name('advertisements.toggle');
     Route::resource('customers', AdminCustomerController::class);
     Route::resource('orders', AdminOrderController::class);
     Route::get('orders/{order}/pdf', [AdminOrderController::class , 'downloadPdf'])->name('orders.pdf');

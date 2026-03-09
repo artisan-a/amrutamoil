@@ -182,6 +182,10 @@
             // Magnetic Button Effect
             const magneticElements = document.querySelectorAll('.btn-primary, .btn-outline, a, button');
             magneticElements.forEach((el) => {
+                if (el.classList.contains('no-magnetic') || el.closest('.no-magnetic')) {
+                    return;
+                }
+
                 el.addEventListener('mousemove', (e) => {
                     const rect = el.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;

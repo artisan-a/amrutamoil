@@ -274,6 +274,81 @@
     </div>
 </section>
 
+@if(!empty($activePopupAd))
+<div x-data="{
+        open: false,
+        closeAndRemember() {
+            this.open = false;
+        }
+    }"
+    x-init="
+        setTimeout(() => open = true, 350);
+    "
+    x-show="open"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="fixed inset-0 flex items-center justify-center p-4 sm:p-6"
+    style="display: none; z-index: 2147483647;"
+    >
+    <div class="absolute inset-0 bg-black/65 backdrop-blur-[3px]" style="z-index: 2147483646;" @click="closeAndRemember()"></div>
+
+    <div
+        class="relative w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl border border-stone-200"
+        style="z-index: 2147483647;"
+        @click.stop
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-3"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+        x-transition:leave-end="opacity-0 scale-95 translate-y-2">
+        <button type="button"
+            class="no-magnetic absolute z-20 w-9 h-9 rounded-full text-white shadow-sm flex items-center justify-center transition"
+            style="top: 12px; right: 12px; background-color: #ef4444;"
+            onmouseover="this.style.backgroundColor='#dc2626'"
+            onmouseout="this.style.backgroundColor='#ef4444'"
+            @click="closeAndRemember()"
+            aria-label="Close advertisement popup">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        @if($activePopupAd->redirect_url && $activePopupAd->image)
+        <a href="{{ $activePopupAd->redirect_url }}" class="no-magnetic block">
+            <div class="w-full h-52 sm:h-56 bg-gradient-to-br from-amber-50 to-stone-100 p-4 sm:p-5">
+                <img src="{{ asset('storage/' . $activePopupAd->image) }}" alt="{{ $activePopupAd->title }}"
+                    class="w-full h-full object-contain">
+            </div>
+        </a>
+        @elseif($activePopupAd->image)
+        <div class="w-full h-52 sm:h-56 bg-gradient-to-br from-amber-50 to-stone-100 p-4 sm:p-5">
+            <img src="{{ asset('storage/' . $activePopupAd->image) }}" alt="{{ $activePopupAd->title }}"
+                class="w-full h-full object-contain">
+        </div>
+        @endif
+
+        <div class="p-5 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-bold text-stone-900 leading-tight pr-8">{{ $activePopupAd->title }}</h3>
+            @if($activePopupAd->description)
+            <p class="mt-2 text-stone-600 text-sm sm:text-base leading-relaxed">{{ $activePopupAd->description }}</p>
+            @endif
+
+            @if($activePopupAd->button_text && $activePopupAd->redirect_url)
+            <a href="{{ $activePopupAd->redirect_url }}"
+                class="no-magnetic inline-flex mt-5 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition shadow-sm">
+                {{ $activePopupAd->button_text }}
+            </a>
+            @endif
+        </div>
+    </div>
+</div>
+@endif
+
 @endsection
 
 @push('scripts')

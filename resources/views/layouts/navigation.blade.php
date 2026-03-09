@@ -35,6 +35,10 @@
                     <x-nav-link :href="route('admin.blog.index')" :active="request()->routeIs('admin.blog.*')">
                         {{ __('Blogs') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.advertisements.index')"
+                        :active="request()->routeIs('admin.advertisements.*')">
+                        {{ __('Advertisements') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -118,6 +122,10 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.blog.index')" :active="request()->routeIs('admin.blog.*')">
                 {{ __('Blogs') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.advertisements.index')"
+                :active="request()->routeIs('admin.advertisements.*')">
+                {{ __('Advertisements') }}
             </x-responsive-nav-link>
         </div>
 
