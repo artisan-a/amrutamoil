@@ -137,6 +137,27 @@ class OrderController extends Controller
         return view('admin.orders.show', compact('order'));
     }
 
+    public function edit(Order $order)
+    {
+        $order->load('customer');
+        return view('admin.orders.edit', compact('order'));
+    }
+
+    public function update(Request $request, Order $order)
+    {
+        $validated = $request->validate([
+            'payment_status' => 'required|in:Pending,Paid,Cancelled',
+        ]);
+
+        $order->update([
+            'payment_status' => $validated['payment_status'],
+        ]);
+
+        return redirect()
+            ->route('admin.orders.show', $order)
+            ->with('success', 'Invoice status updated successfully.');
+    }
+
     public function downloadPdf(Order $order)
     {
         $order->load(['customer', 'items.product']);

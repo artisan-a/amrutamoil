@@ -86,6 +86,12 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
                                     <div class="flex gap-4 justify-end">
+                                        @if($order->payment_status === 'Pending')
+                                        <a href="{{ route('admin.orders.edit', $order) }}"
+                                            class="text-amber-600 hover:text-amber-800 font-semibold inline-flex items-center gap-1 transition">
+                                            Edit
+                                        </a>
+                                        @endif
                                         <a href="{{ route('admin.orders.show', $order) }}"
                                             class="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center gap-1 transition">
                                             View Invoice

@@ -21,6 +21,17 @@
             </div>
 
             <div class="flex gap-4">
+                @if($order->payment_status === 'Pending')
+                <a href="{{ route('admin.orders.edit', $order) }}"
+                    class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition shadow-sm whitespace-nowrap flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L12 15l-4 1 1-4 8.586-8.586z">
+                        </path>
+                    </svg>
+                    Edit Invoice
+                </a>
+                @endif
                 <a href="{{ route('admin.orders.pdf', $order) }}"
                     class="bg-stone-800 hover:bg-stone-900 text-white font-bold py-2.5 px-6 rounded-xl transition shadow-sm whitespace-nowrap flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,34 +56,55 @@
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <!-- Printable Invoice Area -->
-            <div id="print-area" class="bg-white rounded-2xl shadow-sm overflow-hidden p-10 border border-stone-200">
+            <div id="print-area"
+                class="relative bg-white rounded-2xl shadow-sm overflow-hidden p-10 border border-stone-200"
+                style="font-family: 'DejaVu Sans', 'Helvetica Neue', Arial, sans-serif;">
+                <div class="invoice-watermark absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+                    <img src="{{ asset('images/amrutam-wordmark.png') }}" alt=""
+                        class="w-[520px] max-w-[85%] select-none"
+                        style="transform: rotate(-23deg); opacity: 0.065; filter: grayscale(1) brightness(2.3) contrast(0.25);"
+                        onerror="this.style.display='none';">
+                </div>
 
                 <!-- Invoice Header -->
-                <div class="flex justify-between items-start border-b border-stone-100 pb-8 mb-8">
-                    <div>
-                        <h1 class="text-3xl font-serif font-bold text-amber-600 mb-2">Amrutam Ground Nut Oil</h1>
-                        <p class="text-stone-500 max-w-xs text-sm">
-                            123 Oil Mill Road, Industrial Area<br>
-                            Rajkot, Gujarat - 360002<br>
-                            Phone: +91 9876543210<br>
-                            Email: contact@amrutamoil.com
-                        </p>
-                    </div>
-                    <div class="text-right">
-                        <h2 class="text-4xl font-black text-stone-200 uppercase tracking-widest mb-4">Invoice</h2>
-                        <div class="text-sm">
-                            <p class="mb-1"><span class="text-stone-500 font-bold">Invoice Number:</span> <span
-                                    class="text-stone-900 font-bold ml-2">{{ $order->invoice_number }}</span></p>
-                            <p class="mb-1"><span class="text-stone-500 font-bold">Invoice Date:</span> <span
-                                    class="text-stone-900 ml-2">{{ $order->order_date->format('F d, Y') }}</span></p>
-                            <p><span class="text-stone-500 font-bold">Status:</span> <span
-                                    class="text-stone-900 ml-2 font-bold">{{ $order->payment_status }}</span></p>
+                <div class="relative z-10 flex justify-between items-start border-b border-stone-100 pb-8 mb-8">
+                    <div class="flex items-start gap-3">
+                        <img src="{{ asset('images/logo.png') }}" alt="Amrutam Logo" class="w-10 h-10 object-contain">
+                        <div>
+                            <img src="{{ asset('images/amrutam-wordmark.png') }}" alt="Amrutam"
+                                class="h-7 w-auto mb-2 object-contain"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <h1 class="text-3xl font-serif font-bold text-amber-600 mb-2" style="display:none;">Amrutam
+                                Ground Nut Oil</h1>
+                            <p class="text-stone-500 max-w-xs text-sm">
+                                G-16, Shyam Elegance, Nana Chiloda<br>
+                                Ahmedabad, Gujarat - 382330<br>
+                                Phone: +91 9979790609<br>
+                                Email: pure@amrutamoil.com
+                            </p>
                         </div>
+                    </div>
+                    <div class="text-right min-w-[300px]">
+                        <h2 class="text-4xl font-black text-stone-500 uppercase tracking-wider mb-4">Invoice</h2>
+                        <table class="ml-auto text-sm text-stone-700">
+                            <tr>
+                                <td class="font-bold pr-3 py-0.5 text-right whitespace-nowrap">Invoice Number:</td>
+                                <td class="font-bold text-stone-900 py-0.5 text-right">{{ $order->invoice_number }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold pr-3 py-0.5 text-right whitespace-nowrap">Invoice Date:</td>
+                                <td class="text-stone-900 py-0.5 text-right">{{ $order->order_date->format('F d, Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold pr-3 py-0.5 text-right">Status:</td>
+                                <td class="font-bold text-stone-900 py-0.5 text-right">{{ $order->payment_status }}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
                 <!-- Bill To -->
-                <div class="mb-10 block">
+                <div class="relative z-10 mb-10 block">
                     <h3 class="text-sm font-bold text-stone-400 uppercase tracking-widest mb-3">Bill To:</h3>
                     <h4 class="text-lg font-bold text-stone-900">{{ $order->customer->customer_name }}</h4>
                     @if($order->customer->address)
@@ -91,8 +123,14 @@
                 </div>
 
                 <!-- Items Table -->
-                <div class="mb-10">
-                    <table class="w-full text-left">
+                <div class="relative z-10 mb-10">
+                    <table class="w-full text-left table-fixed">
+                        <colgroup>
+                            <col class="w-[52%]">
+                            <col class="w-[16%]">
+                            <col class="w-[16%]">
+                            <col class="w-[16%]">
+                        </colgroup>
                         <thead>
                             <tr class="border-y border-stone-200 bg-stone-50">
                                 <th class="py-4 px-4 font-bold text-stone-900 text-sm">Description</th>
@@ -108,9 +146,9 @@
                                     <span class="font-bold text-stone-800 block">{{ $item->product->name }}</span>
                                     <span class="text-sm text-stone-500">{{ $item->product->size }}</span>
                                 </td>
-                                <td class="py-4 px-4 text-center">{{ $item->quantity }}</td>
-                                <td class="py-4 px-4 text-right">{{ number_format($item->price, 2) }}</td>
-                                <td class="py-4 px-4 text-right font-medium text-stone-900">{{
+                                <td class="py-4 px-4 text-center align-top">{{ $item->quantity }}</td>
+                                <td class="py-4 px-4 text-right align-top">{{ number_format($item->price, 2) }}</td>
+                                <td class="py-4 px-4 text-right align-top font-medium text-stone-900">{{
                                     number_format($item->total, 2) }}</td>
                             </tr>
                             @endforeach
@@ -119,29 +157,29 @@
                 </div>
 
                 <!-- Totals -->
-                <div class="flex justify-end">
-                    <div class="w-full max-w-sm space-y-3 text-stone-700">
-                        <div class="flex justify-between items-center px-4">
-                            <span class="font-bold">Subtotal:</span>
-                            <span>₹{{ number_format($order->total_amount, 2) }}</span>
-                        </div>
-                        @if($order->discount > 0)
-                        <div class="flex justify-between items-center px-4 text-green-600">
-                            <span class="font-bold">Discount:</span>
-                            <span>- ₹{{ number_format($order->discount, 2) }}</span>
-                        </div>
-                        @endif
-                        <div
-                            class="flex justify-between items-center px-4 py-4 bg-stone-50 border-y border-stone-200 mt-2">
-                            <span class="font-bold text-xl text-stone-900">Final Total:</span>
-                            <span class="font-bold text-2xl text-amber-600 font-serif">₹{{
-                                number_format($order->final_amount, 2) }}</span>
-                        </div>
+                <div class="relative z-10 flex justify-end">
+                    <div class="w-full max-w-sm text-stone-700">
+                        <table class="w-full border-collapse">
+                            <tr>
+                                <td class="px-4 py-2 font-bold text-stone-700">Subtotal:</td>
+                                <td class="px-4 py-2 text-right text-stone-800">₹{{ number_format($order->total_amount, 2) }}</td>
+                            </tr>
+                            @if($order->discount > 0)
+                            <tr>
+                                <td class="px-4 py-2 font-bold text-green-700">Discount:</td>
+                                <td class="px-4 py-2 text-right text-green-700">- ₹{{ number_format($order->discount, 2) }}</td>
+                            </tr>
+                            @endif
+                            <tr class="border-y border-stone-300 bg-stone-50">
+                                <td class="px-4 py-3 font-bold text-2xl text-stone-900">Final Total:</td>
+                                <td class="px-4 py-3 text-right font-bold text-4xl text-amber-600">₹{{ number_format($order->final_amount, 2) }}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
                 <!-- Footer -->
-                <div class="mt-16 pt-8 border-t border-stone-100 text-center text-stone-400 text-sm">
+                <div class="relative z-10 mt-16 pt-8 border-t border-stone-100 text-center text-stone-400 text-sm">
                     <p class="font-bold text-stone-600 mb-1">Thank you for your business!</p>
                     <p>If you have any questions about this invoice, please contact us.</p>
                 </div>
@@ -154,6 +192,14 @@
     @push('scripts')
     <style>
         @media print {
+            html,
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             body * {
                 visibility: hidden;
             }
@@ -164,19 +210,76 @@
             }
 
             #print-area {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                border: none;
-                box-shadow: none;
-                padding: 0;
+                position: relative !important;
+                left: auto !important;
+                top: auto !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                box-sizing: border-box !important;
+                min-height: calc(297mm - 12mm) !important;
+                padding: 3mm 6mm 6mm 6mm !important;
+                color: #000 !important;
+                background: #fff !important;
+                overflow: visible !important;
             }
 
-            /* Hide the browser header/footer margins */
+            .py-12,
+            .max-w-4xl,
+            .sm\:px-6,
+            .lg\:px-8 {
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            /* Print in clear black-and-white with readable borders/text. */
+            #print-area,
+            #print-area * {
+                color: #000 !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            #print-area .bg-stone-50 {
+                background: #f5f5f5 !important;
+            }
+
+            #print-area table,
+            #print-area th,
+            #print-area td,
+            #print-area div {
+                border-color: #666 !important;
+            }
+
+            #print-area .invoice-watermark {
+                position: fixed !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) rotate(-23deg) !important;
+                z-index: 0 !important;
+                display: block !important;
+                filter: none !important;
+                width: auto !important;
+                height: auto !important;
+                inset: auto !important;
+            }
+
+            #print-area .invoice-watermark img {
+                width: 150mm !important;
+                max-width: none !important;
+                opacity: 0.11 !important;
+                transform: none !important;
+                filter: grayscale(1) brightness(1.7) contrast(0.55) !important;
+            }
+
             @page {
-                margin: 0;
-                size: auto;
+                size: A4 portrait;
+                margin: 6mm;
             }
         }
     </style>
