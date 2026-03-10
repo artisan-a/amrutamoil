@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-16 sm:pb-20 lg:pb-24 relative z-10 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
             {{-- Left: Text --}}
@@ -136,7 +136,7 @@
 </section>
 
 {{-- ===== PRODUCTS SECTION ===== --}}
-<section class="py-24 bg-white">
+<section class="pt-10 sm:pt-12 lg:pt-14 pb-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <span class="text-amber-600 font-bold tracking-widest uppercase text-sm block mb-3">Our Range</span>
@@ -174,7 +174,7 @@
             @endforeach
         </div>
 
-        <div class="text-center mt-12">
+        <div class="text-center mt-12 mb-10 sm:mb-12">
             <a href="{{ route('products.index') }}" class="btn-outline">View All Products</a>
         </div>
     </div>
