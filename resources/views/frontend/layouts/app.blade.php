@@ -151,7 +151,9 @@
             </div>
             <div
                 class="mt-8 pt-8 border-t border-stone-800 text-center text-sm text-[#78716c] flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; {{ date('Y') }} Amrutam Ground Nut Oil. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Copyright by Amrutam. Developed by 
+                <a href="https://navotrix.com/" target="_blank">Navotrix Softwares Solutions</a>.
+                </p>
                 @auth
                 <a href="{{ route('dashboard') }}" class="text-amber-600 hover:text-amber-600 mt-2 md:mt-0">Admin
                     Dashboard</a>
