@@ -4,10 +4,16 @@
             <h2 class="font-bold text-2xl text-stone-900 leading-tight font-serif">
                 {{ __('Advertisements') }}
             </h2>
-            <a href="{{ route('admin.advertisements.create') }}"
-                class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition shadow-sm">
-                + Add Advertisement
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="{{ route('admin.advertisements.ticker.edit') }}"
+                    class="border border-amber-500 text-amber-700 hover:bg-amber-50 font-bold py-2.5 px-5 rounded-xl transition">
+                    Manage Ticker Ad
+                </a>
+                <a href="{{ route('admin.advertisements.create') }}"
+                    class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition shadow-sm">
+                    + Add Advertisement
+                </a>
+            </div>
         </div>
     </x-slot>
 

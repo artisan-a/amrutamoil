@@ -4,7 +4,7 @@
 
 {{-- ===== HERO SECTION ===== --}}
 <section
-    class="relative min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-stone-100 flex items-center overflow-hidden">
+    class="relative bg-gradient-to-br from-stone-50 via-amber-50 to-stone-100 flex items-start overflow-hidden">
 
     {{-- Animated background blobs --}}
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -49,7 +49,7 @@
                     <a href="{{ route('process') }}" class="btn-outline text-base py-3.5 px-8">Our Process</a>
                 </div>
 
-                <div class="flex flex-wrap gap-6">
+                <div class="flex flex-wrap gap-6 mb-8 sm:mb-10">
                     <div class="flex items-center gap-2 text-stone-600 text-sm font-medium">
                         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -112,25 +112,78 @@
 </section>
 
 {{-- ===== STATS STRIP ===== --}}
-<section class="py-12 bg-stone-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-                <div class="text-4xl font-extrabold text-amber-400 mb-1">100%</div>
-                <p class="text-stone-300 text-sm font-medium">Pure & Natural</p>
+<section class="py-7 sm:py-8 bg-stone-900 text-white border-t border-black/90 overflow-hidden">
+    <div class="stats-marquee-track">
+        <div class="stats-marquee-group">
+            @if(!empty($activeMarqueeAd))
+            @for($i = 0; $i < 4; $i++)
+            <div class="stats-item text-center">
+                @if(!empty($activeMarqueeAd->redirect_url))
+                <a href="{{ $activeMarqueeAd->redirect_url }}"
+                    class="block text-amber-300 hover:text-amber-200 font-semibold text-sm sm:text-base transition">
+                    {{ $activeMarqueeAd->title }}
+                </a>
+                @else
+                <span class="block text-amber-300 font-semibold text-sm sm:text-base">
+                    {{ $activeMarqueeAd->title }}
+                </span>
+                @endif
             </div>
-            <div>
-                <div class="text-4xl font-extrabold text-amber-400 mb-1">3</div>
-                <p class="text-stone-300 text-sm font-medium">Pack Sizes</p>
+            @endfor
+            @else
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">100%</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Pure & Natural</p>
             </div>
-            <div>
-                <div class="text-4xl font-extrabold text-amber-400 mb-1">0°C</div>
-                <p class="text-stone-300 text-sm font-medium">Extra Heat</p>
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">3</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Pack Sizes</p>
             </div>
-            <div>
-                <div class="text-4xl font-extrabold text-amber-400 mb-1">&lt;45°</div>
-                <p class="text-stone-300 text-sm font-medium">Max Temp</p>
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">0°C</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Extra Heat</p>
             </div>
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">&lt;45°</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Max Temp</p>
+            </div>
+            @endif
+        </div>
+
+        <div class="stats-marquee-group" aria-hidden="true">
+            @if(!empty($activeMarqueeAd))
+            @for($i = 0; $i < 4; $i++)
+            <div class="stats-item text-center">
+                @if(!empty($activeMarqueeAd->redirect_url))
+                <a href="{{ $activeMarqueeAd->redirect_url }}" tabindex="-1"
+                    class="block text-amber-300 font-semibold text-sm sm:text-base">
+                    {{ $activeMarqueeAd->title }}
+                </a>
+                @else
+                <span class="block text-amber-300 font-semibold text-sm sm:text-base">
+                    {{ $activeMarqueeAd->title }}
+                </span>
+                @endif
+            </div>
+            @endfor
+            @else
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">100%</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Pure & Natural</p>
+            </div>
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">3</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Pack Sizes</p>
+            </div>
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">0°C</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Extra Heat</p>
+            </div>
+            <div class="stats-item text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 mb-0.5">&lt;45°</div>
+                <p class="text-stone-300 text-xs sm:text-sm font-medium">Max Temp</p>
+            </div>
+            @endif
         </div>
     </div>
 </section>
@@ -422,6 +475,52 @@
 
         50% {
             opacity: 0.4;
+        }
+    }
+
+    @keyframes statsMarquee {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-100vw);
+        }
+    }
+
+    .stats-marquee-track {
+        display: flex;
+        animation: statsMarquee 20s linear infinite;
+        will-change: transform;
+    }
+
+    .stats-marquee-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 1.5rem;
+        width: 100vw;
+        flex-shrink: 0;
+        padding: 0 1.25rem;
+    }
+
+    .stats-item {
+        min-width: 120px;
+    }
+
+    @media (min-width: 640px) {
+        .stats-marquee-group {
+            gap: 2rem;
+        }
+
+        .stats-item {
+            min-width: 170px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .stats-marquee-track {
+            animation: none;
         }
     }
 </style>

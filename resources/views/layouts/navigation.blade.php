@@ -36,8 +36,12 @@
                         {{ __('Blogs') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.advertisements.index')"
-                        :active="request()->routeIs('admin.advertisements.*')">
+                        :active="request()->routeIs('admin.advertisements.*') && !request()->routeIs('admin.advertisements.ticker.*')">
                         {{ __('Advertisements') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.advertisements.ticker.edit')"
+                        :active="request()->routeIs('admin.advertisements.ticker.*')">
+                        {{ __('Ticker Ad') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -124,8 +128,12 @@
                 {{ __('Blogs') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.advertisements.index')"
-                :active="request()->routeIs('admin.advertisements.*')">
+                :active="request()->routeIs('admin.advertisements.*') && !request()->routeIs('admin.advertisements.ticker.*')">
                 {{ __('Advertisements') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.advertisements.ticker.edit')"
+                :active="request()->routeIs('admin.advertisements.ticker.*')">
+                {{ __('Ticker Ad') }}
             </x-responsive-nav-link>
         </div>
 

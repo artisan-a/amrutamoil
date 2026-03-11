@@ -24,8 +24,14 @@ Route::get('/', function () {
         ->where('type', 'popup')
         ->latest()
         ->first();
+    $activeMarqueeAd = Advertisement::query()
+        ->active()
+        ->withinDateRange()
+        ->where('type', 'marquee')
+        ->latest()
+        ->first();
 
-    return view('frontend.home', compact('products', 'activePopupAd'));
+    return view('frontend.home', compact('products', 'activePopupAd', 'activeMarqueeAd'));
 })->name('home');
 
 Route::get('/about', function () {
@@ -65,6 +71,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('inquiries', AdminInquiryController::class)->only(['index', 'show', 'destroy']);
     Route::resource('contacts', AdminContactController::class)->only(['index', 'destroy']);
     Route::resource('blog', AdminBlogController::class);
+    Route::get('advertisements/ticker', [AdminAdvertisementController::class, 'editTicker'])->name('advertisements.ticker.edit');
+    Route::put('advertisements/ticker', [AdminAdvertisementController::class, 'updateTicker'])->name('advertisements.ticker.update');
     Route::resource('advertisements', AdminAdvertisementController::class)->except(['show']);
     Route::patch('advertisements/{advertisement}/toggle', [AdminAdvertisementController::class, 'toggleStatus'])->name('advertisements.toggle');
     Route::resource('customers', AdminCustomerController::class);

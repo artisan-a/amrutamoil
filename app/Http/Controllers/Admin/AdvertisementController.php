@@ -14,7 +14,10 @@ class AdvertisementController extends Controller
 {
     public function index(): View
     {
-        $advertisements = Advertisement::latest()->paginate(12);
+        $advertisements = Advertisement::query()
+            ->where('type', 'popup')
+            ->latest()
+            ->paginate(12);
 
         return view('admin.advertisements.index', compact('advertisements'));
     }
@@ -27,6 +30,7 @@ class AdvertisementController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $this->validateAdvertisement($request);
+        $validated['type'] = 'popup';
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('advertisements', 'public');
@@ -47,6 +51,7 @@ class AdvertisementController extends Controller
     public function update(Request $request, Advertisement $advertisement): RedirectResponse
     {
         $validated = $this->validateAdvertisement($request, true);
+        $validated['type'] = 'popup';
 
         if ($request->hasFile('image')) {
             if ($advertisement->image && Storage::disk('public')->exists($advertisement->image)) {
@@ -87,6 +92,63 @@ class AdvertisementController extends Controller
             ->with('success', 'Advertisement status updated.');
     }
 
+    public function editTicker(): View
+    {
+        $ticker = Advertisement::query()->firstOrNew(
+            ['type' => 'marquee'],
+            [
+                'title' => '',
+                'redirect_url' => null,
+                'status' => 'inactive',
+            ]
+        );
+
+        return view('admin.advertisements.ticker', compact('ticker'));
+    }
+
+    public function updateTicker(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'redirect_url' => [
+                'nullable',
+                'string',
+                'max:2048',
+                function (string $attribute, mixed $value, \Closure $fail): void {
+                    if ($value === null || $value === '') {
+                        return;
+                    }
+
+                    $isExternal = filter_var($value, FILTER_VALIDATE_URL) !== false;
+                    $isInternal = str_starts_with($value, '/');
+
+                    if (! $isExternal && ! $isInternal) {
+                        $fail('The ' . $attribute . ' must be a valid URL or start with /.');
+                    }
+                },
+            ],
+            'status' => ['required', Rule::in(['active', 'inactive'])],
+        ]);
+
+        Advertisement::query()->updateOrCreate(
+            ['type' => 'marquee'],
+            [
+                'title' => $validated['title'],
+                'redirect_url' => $validated['redirect_url'] ?? null,
+                'status' => $validated['status'],
+                'start_date' => now()->toDateString(),
+                'end_date' => '2099-12-31',
+                'description' => null,
+                'image' => null,
+                'button_text' => null,
+            ]
+        );
+
+        return redirect()
+            ->route('admin.advertisements.ticker.edit')
+            ->with('success', 'Ticker advertisement updated successfully.');
+    }
+
     private function validateAdvertisement(Request $request, bool $isUpdate = false): array
     {
         $imageRule = $isUpdate ? 'nullable' : 'required';
@@ -117,9 +179,5 @@ class AdvertisementController extends Controller
             'end_date' => ['required', 'date', 'after_or_equal:start_date'],
             'status' => ['required', Rule::in(['active', 'inactive'])],
         ]);
-
-        $validated['type'] = 'popup';
-
-        return $validated;
     }
 }
