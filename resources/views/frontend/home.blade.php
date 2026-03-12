@@ -234,7 +234,7 @@
 </section>
 
 {{-- ===== WHY COLD PRESSED ===== --}}
-<section class="py-24 bg-gradient-to-br from-stone-800 to-stone-900 text-white">
+<section class="py-16 bg-gradient-to-br from-stone-800 to-stone-900 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="rounded-3xl overflow-hidden shadow-2xl">
@@ -307,7 +307,7 @@
 </section>
 
 {{-- ===== CTA ===== --}}
-<section class="py-24 bg-amber-600 text-white text-center relative overflow-hidden">
+<section class="py-16 bg-amber-600 text-white text-center relative overflow-hidden">
     <div class="absolute -top-20 -right-20 w-80 h-80 bg-amber-400 rounded-full blur-3xl opacity-40 pointer-events-none">
     </div>
     <div
