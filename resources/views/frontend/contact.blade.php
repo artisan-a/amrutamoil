@@ -3,7 +3,7 @@
 @section('title', 'Contact Us | Amrutam Ground Nut Oil')
 
 @section('content')
-<div class="bg-[#fafaf9] py-16 lg:py-24 relative overflow-hidden">
+<div class="bg-[#fafaf9] py-16 lg:py-12 relative overflow-hidden">
     <!-- Decorative Blob -->
     <div
         class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-amber-100 rounded-full mix-blend-multiply opacity-50 blur-3xl z-0 pointer-events-none">

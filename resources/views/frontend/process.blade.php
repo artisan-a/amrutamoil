@@ -5,7 +5,7 @@
 @section('content')
 
 {{-- Hero --}}
-<section class="relative min-h-[500px] flex items-center justify-center py-24 text-center overflow-hidden bg-stone-900">
+<section class="relative min-h-[320px] flex items-center justify-center py-12 text-center overflow-hidden bg-stone-900">
     {{-- Background Image & Overlay --}}
     <div class="absolute inset-0 bg-stone-900/60 mix-blend-multiply"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-stone-900/40"></div>
@@ -44,14 +44,14 @@
             </div>
             <div>
                 <div class="text-2xl font-extrabold">Traditional</div>
-                <p class="text-amber-100 text-sm">Kachi Ghani Method</p>
+                <p class="text-amber-100 text-sm">Cold Pressings Method</p>
             </div>
         </div>
     </div>
 </section>
 
 {{-- Process Steps --}}
-<section class="py-24 bg-white">
+<section class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-16">
@@ -93,7 +93,7 @@
                     <ul class="space-y-3">
                         <li class="flex items-start gap-3"><span
                                 class="w-6 h-6 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs mt-0.5">✓</span><span
-                                class="text-stone-600">Direct partnership with local Indian farmers</span></li>
+                                class="text-stone-600">Direct partnership with local (Most of Gujarat) farmers</span></li>
                         <li class="flex items-start gap-3"><span
                                 class="w-6 h-6 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs mt-0.5">✓</span><span
                                 class="text-stone-600">Sun-dried for optimal moisture content</span></li>
@@ -170,9 +170,9 @@
                 <div class="lg:pl-8">
                     <span class="text-amber-600 font-bold text-sm uppercase tracking-widest block mb-3">Step Three — The
                         Heart of the Process</span>
-                    <h3 class="text-3xl font-bold text-stone-900 font-serif mb-4">cold Pressing (Kachi Ghani)</h3>
+                    <h3 class="text-3xl font-bold text-stone-900 font-serif mb-4">Cold Pressing</h3>
                     <p class="text-stone-600 text-lg leading-relaxed mb-6">The cleaned kernels are pressed in our
-                        traditional wooden ghani at a slow, gentle speed. <strong class="text-stone-800">No external
+                        traditional cold pressing at a slow, gentle speed. <strong class="text-stone-800">No external
                             heat is applied</strong> — the temperature stays below 45°C throughout. This preserves all
                         natural vitamins, antioxidants, and the authentic nutty aroma.</p>
                     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
@@ -252,7 +252,7 @@
                     <h3 class="text-3xl font-bold text-stone-900 font-serif mb-4">Bottling &amp; Quality Check</h3>
                     <p class="text-stone-600 text-lg leading-relaxed mb-6">The pure oil is quality-tested for aroma,
                         acidity, and colour — then carefully bottled in food-grade packaging and sealed to preserve
-                        freshness. Available in 1 KG, 5 KG, and 15 KG for homes, families, and businesses.</p>
+                        freshness. Available in 1 Ltr, 5 Ltr, and 15 KG for homes, families, and businesses.</p>
                     <a href="{{ route('products.index') }}"
                         class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3.5 px-8 rounded-xl transition text-base">
                         Shop Now
@@ -291,7 +291,7 @@
                 style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10)">
                 <div class="text-5xl mb-5">🏺</div>
                 <h3 class="text-xl font-bold mb-3 text-white">Traditional Wisdom</h3>
-                <p class="text-stone-300 leading-relaxed">The Kachi Ghani method has been trusted by Indian families for
+                <p class="text-stone-300 leading-relaxed">The Cold Pressing method has been trusted by Indian families for
                     centuries. We preserve this heritage in every batch.</p>
             </div>
         </div>
@@ -299,7 +299,7 @@
 </section>
 
 {{-- CTA --}}
-<section class="py-20 bg-amber-500 text-white text-center">
+<section class="py-12 bg-amber-500 text-white text-center">
     <div class="max-w-3xl mx-auto px-4">
         <h2 class="text-4xl font-extrabold font-serif mb-4">Taste the Difference</h2>
         <p class="text-amber-100 text-lg mb-8">Now you know exactly how our oil is made — pure, natural, and

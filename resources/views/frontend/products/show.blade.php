@@ -3,7 +3,7 @@
 @section('title', $product->name . ' - ' . $product->size . ' | Amrutam Ground Nut Oil')
 
 @section('content')
-<div class="bg-white py-16 lg:py-24">
+<div class="bg-white py-16 lg:py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-8">

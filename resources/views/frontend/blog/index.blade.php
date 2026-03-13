@@ -5,7 +5,7 @@
 @section('content')
 
 {{-- Header --}}
-<section class="bg-gradient-to-br from-stone-50 to-amber-50 py-20 border-b border-stone-100">
+<section class="bg-gradient-to-br from-stone-50 to-amber-50 py-12 border-b border-stone-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="text-amber-600 font-bold tracking-widest uppercase text-sm block mb-3">Health & Knowledge</span>
         <h1 class="text-5xl font-extrabold text-stone-900 font-serif mb-4">Our Blog</h1>
