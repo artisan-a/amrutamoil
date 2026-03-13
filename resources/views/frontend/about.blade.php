@@ -90,7 +90,7 @@
                     <div class="mt-8 grid gap-4 border-t border-amber-200 pt-8 sm:mt-10 sm:grid-cols-2 sm:pt-10">
                         <div class="rounded-[1.5rem] border border-stone-200 bg-stone-50 px-5 py-4">
                             <p class="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">Traditional method</p>
-                            <p class="mt-2 text-base text-stone-700">Wood-pressed extraction that protects aroma, flavor, and nutrients.</p>
+                            <p class="mt-2 text-base text-stone-700">Cold-pressed extraction that protects aroma, flavor, and nutrients.</p>
                         </div>
 
                         <div class="rounded-[1.5rem] border border-stone-200 bg-stone-50 px-5 py-4">
