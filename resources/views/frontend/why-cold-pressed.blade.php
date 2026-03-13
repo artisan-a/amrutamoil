@@ -17,7 +17,7 @@
                 Refined vs. Cold Pressed
             </h1>
             <p class="text-base sm:text-lg lg:text-xl text-[#57534e] max-w-3xl mx-auto leading-relaxed">
-                Discover why switching to traditional cold-pressed oil can be better for daily cooking and long-term
+                Discover why switching to premium cold pressed oil can be better for daily cooking and long-term
                 family health.
             </p>
         </div>
@@ -83,7 +83,7 @@
                         <span
                             class="mt-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm"
                             style="background: rgba(167, 243, 208, 0.22); color: #ecfdf5;">✓</span>
-                        <p class="text-lg leading-relaxed" style="color: #fff7ed;"><strong class="text-white">Room Temperature:</strong> Crushed gently below 45°C.
+                        <p class="text-lg leading-relaxed" style="color: #fff7ed;"><strong class="text-white">Low Temperature:</strong> Pressed gently below 45°C.
                             Nutrients remain intact.</p>
                     </li>
                     <li class="flex items-start gap-3">
@@ -91,7 +91,7 @@
                             class="mt-0.5 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm"
                             style="background: rgba(167, 243, 208, 0.22); color: #ecfdf5;">✓</span>
                         <p class="text-lg leading-relaxed" style="color: #fff7ed;"><strong class="text-white">Zero Chemicals:</strong> Extracted mechanically using
-                            wooden churners. No solvents.
+                            modern cold press machines. No solvents.
                         </p>
                     </li>
                     <li class="flex items-start gap-3">

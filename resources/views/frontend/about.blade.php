@@ -27,7 +27,7 @@
                 </h1>
 
                 <p class="mx-auto max-w-2xl text-base font-medium leading-relaxed text-stone-600 sm:text-lg">
-                    A legacy of purity, crafted through generations of traditional wood-pressing methods to bring you
+                    A legacy of purity, crafted through generations of traditional cold-pressing methods to bring you
                     the finest groundnut oil.
                 </p>
             </div>
