@@ -111,52 +111,83 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-stone-800 text-stone-300 py-12 border-t-4 border-amber-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Branding -->
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
+    <footer class="bg-stone-900 text-stone-300 border-t-4 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
                         <img src="{{ asset('images/logo.png') }}" alt="Amrutam Oil Logo"
                             class="h-10 w-auto object-contain">
-                        <span class="font-bold text-2xl text-white font-serif">Amrutam Oil</span>
+                        <div>
+                            <p class="font-serif text-2xl font-bold text-white">Amrutam Oil</p>
+                            <p class="text-sm text-stone-400">Premium cold pressed groundnut oil</p>
+                        </div>
                     </div>
-                    <p class="mb-4 max-w-sm text-[#78716c]">Pure, traditional cold-pressed groundnut oil, directly from
-                        our farm to your kitchen. Experience the true taste of health.</p>
+
+                    <p class="max-w-md text-sm leading-7 text-stone-400">
+                        Premium cold pressed groundnut oil with low-temperature extraction, natural aroma, and trusted
+                        purity for everyday cooking.
+                    </p>
+
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="{{ route('products.index') }}"
+                            class="inline-flex items-center rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-stone-950 transition hover:bg-amber-400">
+                            Explore Products
+                        </a>
+                        <a href="{{ route('contact') }}"
+                            class="inline-flex items-center rounded-full border border-stone-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-amber-400 hover:text-amber-300">
+                            Contact Us
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Links -->
                 <div>
-                    <h3 class="text-white font-bold text-lg mb-4 font-serif">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="{{ route('home') }}" class="hover:text-amber-600 transition">Home</a></li>
-                        <li><a href="{{ route('products.index') }}" class="hover:text-amber-600 transition">Our Oil</a>
-                        </li>
-                        <li><a href="{{ route('why-cold-pressed') }}" class="hover:text-amber-600 transition">Why Cold
-                                Pressed</a></li>
-                        <li><a href="{{ route('contact') }}" class="hover:text-amber-600 transition">Contact Us</a>
-                        </li>
+                    <h3 class="font-serif text-xl font-bold text-white">Quick Links</h3>
+                    <ul class="mt-4 space-y-3 text-sm">
+                        <li><a href="{{ route('home') }}" class="transition hover:text-amber-300">Home</a></li>
+                        <li><a href="{{ route('about') }}" class="transition hover:text-amber-300">About Us</a></li>
+                        <li><a href="{{ route('products.index') }}" class="transition hover:text-amber-300">Products</a></li>
+                        <li><a href="{{ route('process') }}" class="transition hover:text-amber-300">Our Process</a></li>
+                        <li><a href="{{ route('why-cold-pressed') }}" class="transition hover:text-amber-300">Why Cold Pressed</a></li>
+                        <li><a href="{{ route('blog.index') }}" class="transition hover:text-amber-300">Blog</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact -->
                 <div>
-                    <h3 class="text-white font-bold text-lg mb-4 font-serif">Contact</h3>
-                    <ul class="space-y-2 text-[#78716c]">
-                        <li>📍 G-16, Shyam Elegance,<br>Nana Chiloda, Ahmedabad, <br>Gujarat - 382330, India</li>
-                        <li>📞 +91 99797 90609</li>
-                        <li>✉️ pure@amrutamoil.com</li>
-                    </ul>
+                    <h3 class="font-serif text-xl font-bold text-white">Contact Details</h3>
+                    <div class="mt-4 space-y-5 text-sm">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">Address</p>
+                            <p class="mt-2 leading-7 text-stone-400">
+                                G-16, Shyam Elegance,<br>
+                                Nana Chiloda, Ahmedabad,<br>
+                                Gujarat - 382330, India
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">Phone</p>
+                            <a href="tel:+919979790609" class="mt-2 inline-block text-white transition hover:text-amber-300">
+                                +91 99797 90609
+                            </a>
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">Email</p>
+                            <a href="mailto:pure@amrutamoil.com" class="mt-2 inline-block text-white transition hover:text-amber-300 break-all">
+                                pure@amrutamoil.com
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div
-                class="mt-8 pt-8 border-t border-stone-800 text-center text-sm text-[#78716c] flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; {{ date('Y') }} Copyright by Amrutam. Developed by 
-                <a href="https://navotrix.com/" target="_blank">Navotrix Softwares Solutions</a>.
+
+            <div class="mt-10 flex flex-col items-center justify-center gap-3 border-t border-stone-700 pt-6 text-center text-sm text-stone-400">
+                <p>&copy; {{ date('Y') }} Amrutam. Developed by
+                    <a href="https://navotrix.com/" target="_blank" class="text-stone-200 transition hover:text-amber-300">Navotrix Softwares Solutions</a>.
                 </p>
                 @auth
-                <a href="{{ route('dashboard') }}" class="text-amber-600 hover:text-amber-600 mt-2 md:mt-0">Admin
-                    Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="font-medium text-amber-300 transition hover:text-amber-200">Admin Dashboard</a>
                 @endauth
             </div>
         </div>
