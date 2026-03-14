@@ -79,6 +79,7 @@ Route::middleware(['auth', 'verified', 'admin.access'])->prefix('admin')->name('
     Route::resource('customers', AdminCustomerController::class)->middleware('admin.permission:customers');
     Route::resource('orders', AdminOrderController::class)->middleware('admin.permission:orders');
     Route::get('orders/{order}/pdf', [AdminOrderController::class , 'downloadPdf'])->name('orders.pdf')->middleware('admin.permission:orders');
+    Route::post('orders/customers/inline', [AdminCustomerController::class, 'store'])->name('orders.customers.inline')->middleware('admin.permission:orders');
     Route::resource('users', AdminUserController::class)->except(['show'])->middleware('admin.permission:users');
 });
 

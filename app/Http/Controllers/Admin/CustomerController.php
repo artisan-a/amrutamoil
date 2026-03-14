@@ -41,7 +41,15 @@ class CustomerController extends Controller
             'pincode' => 'nullable|string|max:20',
         ]);
 
-        Customer::create($validated);
+        $customer = Customer::create($validated);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Customer added successfully.',
+                'customer' => $customer,
+            ], 201);
+        }
+
         return redirect()->route('admin.customers.index')->with('success', 'Customer added successfully.');
     }
 

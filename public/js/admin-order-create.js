@@ -3,9 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var container = document.getElementById('itemsContainer');
     var addBtn = document.getElementById('addItemBtn');
     var discountInput = document.getElementById('discount');
+    var customerSelectElement = document.getElementById('customer_id');
+    var customerModal = document.getElementById('customerModal');
+    var openCustomerModalBtn = document.getElementById('openCustomerModalBtn');
+    var closeCustomerModalBtn = document.getElementById('closeCustomerModalBtn');
+    var cancelCustomerModalBtn = document.getElementById('cancelCustomerModalBtn');
+    var customerModalOverlay = document.getElementById('customerModalOverlay');
+    var inlineCustomerForm = document.getElementById('inlineCustomerForm');
+    var inlineCustomerError = document.getElementById('inlineCustomerError');
+    var saveInlineCustomerBtn = document.getElementById('saveInlineCustomerBtn');
     var rowIndex = 0;
 
-    new TomSelect('#customer_id', {
+    var customerSelect = new TomSelect('#customer_id', {
         create: false,
         sortField: { field: 'text', direction: 'asc' },
         placeholder: 'Search customer...'
@@ -181,6 +190,101 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addBtn.addEventListener('click', addRow);
     discountInput.addEventListener('input', recalc);
+
+    function openCustomerModal() {
+        customerModal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        inlineCustomerError.classList.add('hidden');
+        setTimeout(function () {
+            var firstInput = document.getElementById('inline_customer_name');
+            if (firstInput) firstInput.focus();
+        }, 50);
+    }
+
+    function closeCustomerModal() {
+        customerModal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        inlineCustomerForm.reset();
+        inlineCustomerError.classList.add('hidden');
+        inlineCustomerError.textContent = '';
+        saveInlineCustomerBtn.disabled = false;
+    }
+
+    function buildCustomerLabel(customer) {
+        return customer.customer_name + ' (' + (customer.phone || 'N/A') + ')';
+    }
+
+    if (openCustomerModalBtn) {
+        openCustomerModalBtn.addEventListener('click', openCustomerModal);
+    }
+
+    [closeCustomerModalBtn, cancelCustomerModalBtn, customerModalOverlay].forEach(function (element) {
+        if (element) {
+            element.addEventListener('click', closeCustomerModal);
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && customerModal && !customerModal.classList.contains('hidden')) {
+            closeCustomerModal();
+        }
+    });
+
+    if (inlineCustomerForm) {
+        inlineCustomerForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            inlineCustomerError.classList.add('hidden');
+            inlineCustomerError.textContent = '';
+            saveInlineCustomerBtn.disabled = true;
+
+            var formData = new FormData(inlineCustomerForm);
+
+            fetch(window.inlineCustomerStoreUrl, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        return response.json().then(function (data) {
+                            throw data;
+                        });
+                    }
+
+                    return response.json();
+                })
+                .then(function (data) {
+                    var customer = data.customer;
+                    var optionText = buildCustomerLabel(customer);
+
+                    customerSelect.addOption({
+                        value: customer.id,
+                        text: optionText
+                    });
+                    customerSelect.addItem(String(customer.id));
+                    customerSelect.refreshOptions(false);
+
+                    closeCustomerModal();
+                })
+                .catch(function (error) {
+                    var message = 'Unable to save customer. Please try again.';
+
+                    if (error && error.errors) {
+                        message = Object.values(error.errors).flat().join(' ');
+                    } else if (error && error.message) {
+                        message = error.message;
+                    }
+
+                    inlineCustomerError.textContent = message;
+                    inlineCustomerError.classList.remove('hidden');
+                    saveInlineCustomerBtn.disabled = false;
+                });
+        });
+    }
 
     document.getElementById('invoiceForm').addEventListener('keypress', function (e) {
         if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {

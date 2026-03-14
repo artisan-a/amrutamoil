@@ -162,9 +162,9 @@
                                         <label
                                             class="text-xs font-black text-stone-400 uppercase tracking-widest">Select
                                             Customer</label>
-                                        <a href="{{ route('admin.customers.create') }}" target="_blank"
+                                        <button type="button" id="openCustomerModalBtn"
                                             class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-100 hover:bg-amber-100 transition-colors">+
-                                            NEW</a>
+                                            NEW</button>
                                     </div>
                                     <select id="customer_id" name="customer_id" required>
                                         <option value="">Search for a customer...</option>
@@ -321,10 +321,92 @@
         </div>
     </div>
 
+    <div id="customerModal" class="fixed inset-0 z-50 hidden">
+        <div id="customerModalOverlay" class="absolute inset-0 bg-stone-950/50 backdrop-blur-sm"></div>
+        <div class="relative min-h-full flex items-center justify-center p-4">
+            <div class="w-full max-w-2xl rounded-3xl border border-stone-200 bg-white shadow-2xl overflow-hidden">
+                <div class="flex items-center justify-between px-6 py-5 border-b border-stone-100">
+                    <div>
+                        <h3 class="text-2xl font-bold text-stone-900 font-serif">Add New Customer</h3>
+                        <p class="text-sm text-stone-500 mt-1">Create a customer without leaving the invoice page.</p>
+                    </div>
+                    <button type="button" id="closeCustomerModalBtn"
+                        class="w-10 h-10 rounded-full border border-stone-200 text-stone-500 hover:text-stone-800 hover:border-stone-300 transition">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="inlineCustomerForm" class="p-6 space-y-5">
+                    @csrf
+                    <div id="inlineCustomerError" class="hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="md:col-span-2">
+                            <label for="inline_customer_name" class="block text-sm font-bold text-stone-700 mb-2">Customer Name</label>
+                            <input id="inline_customer_name" name="customer_name" type="text" required
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500">
+                        </div>
+
+                        <div>
+                            <label for="inline_phone" class="block text-sm font-bold text-stone-700 mb-2">Phone</label>
+                            <input id="inline_phone" name="phone" type="text"
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500">
+                        </div>
+
+                        <div>
+                            <label for="inline_email" class="block text-sm font-bold text-stone-700 mb-2">Email</label>
+                            <input id="inline_email" name="email" type="email"
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="inline_address" class="block text-sm font-bold text-stone-700 mb-2">Address</label>
+                            <textarea id="inline_address" name="address" rows="3"
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500"></textarea>
+                        </div>
+
+                        <div>
+                            <label for="inline_city" class="block text-sm font-bold text-stone-700 mb-2">City</label>
+                            <input id="inline_city" name="city" type="text"
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500">
+                        </div>
+
+                        <div>
+                            <label for="inline_state" class="block text-sm font-bold text-stone-700 mb-2">State</label>
+                            <input id="inline_state" name="state" type="text"
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500">
+                        </div>
+
+                        <div>
+                            <label for="inline_pincode" class="block text-sm font-bold text-stone-700 mb-2">Pincode</label>
+                            <input id="inline_pincode" name="pincode" type="text"
+                                class="w-full rounded-xl border-stone-200 bg-stone-50/60 focus:border-amber-500 focus:ring-amber-500">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-2">
+                        <button type="submit" id="saveInlineCustomerBtn"
+                            class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl transition shadow-sm">
+                            Save Customer
+                        </button>
+                        <button type="button" id="cancelCustomerModalBtn"
+                            class="border border-stone-200 text-stone-600 hover:text-stone-800 font-bold py-3 px-6 rounded-xl transition">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
     <script>
         window.productsData = @json($productsJson);
+        window.inlineCustomerStoreUrl = @json(route('admin.orders.customers.inline'));
     </script>
     <script src="{{ asset('js/admin-order-create.js') }}"></script>
     @endpush
