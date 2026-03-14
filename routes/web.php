@@ -63,8 +63,57 @@ Route::get('/dashboard', function () {
     $totalOrders = \App\Models\Order::count();
     $totalRevenue = \App\Models\Order::where('payment_status', 'Paid')->sum('final_amount');
     $lowStockCount = \App\Models\Product::where('stock_quantity', '<=', 5)->where('status', true)->count();
+    $paidOrdersCount = \App\Models\Order::where('payment_status', 'Paid')->count();
+    $pendingOrdersCount = \App\Models\Order::where('payment_status', 'Pending')->count();
+    $cancelledOrdersCount = \App\Models\Order::where('payment_status', 'Cancelled')->count();
+    $currentMonthRevenue = \App\Models\Order::where('payment_status', 'Paid')
+        ->whereMonth('order_date', now()->month)
+        ->whereYear('order_date', now()->year)
+        ->sum('final_amount');
+    $recentOrders = \App\Models\Order::with('customer')
+        ->latest('order_date')
+        ->take(5)
+        ->get();
+    $lowStockProducts = \App\Models\Product::where('stock_quantity', '<=', 5)
+        ->where('status', true)
+        ->orderBy('stock_quantity')
+        ->take(5)
+        ->get();
+    $topProducts = \App\Models\OrderItem::query()
+        ->selectRaw('product_id, SUM(quantity) as total_quantity, SUM(total) as total_sales')
+        ->with('product')
+        ->groupBy('product_id')
+        ->orderByDesc('total_quantity')
+        ->take(5)
+        ->get();
 
-    return view('dashboard', compact('totalCustomers', 'totalOrders', 'totalRevenue', 'lowStockCount'));
+    $monthlyRevenue = collect(range(0, 5))
+        ->map(function ($index) {
+            $date = now()->subMonths(5 - $index);
+
+            return [
+                'label' => $date->format('M'),
+                'value' => (float) \App\Models\Order::where('payment_status', 'Paid')
+                    ->whereMonth('order_date', $date->month)
+                    ->whereYear('order_date', $date->year)
+                    ->sum('final_amount'),
+            ];
+        });
+
+    return view('dashboard', compact(
+        'totalCustomers',
+        'totalOrders',
+        'totalRevenue',
+        'lowStockCount',
+        'paidOrdersCount',
+        'pendingOrdersCount',
+        'cancelledOrdersCount',
+        'currentMonthRevenue',
+        'recentOrders',
+        'lowStockProducts',
+        'topProducts',
+        'monthlyRevenue',
+    ));
 })->middleware(['auth', 'verified', 'admin.access'])->name('dashboard');
 
 Route::middleware(['auth', 'verified', 'admin.access'])->prefix('admin')->name('admin.')->group(function () {
