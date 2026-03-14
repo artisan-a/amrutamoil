@@ -96,6 +96,7 @@
                         publish new stories to your blog.
                     </p>
                     <div class="flex flex-wrap justify-center gap-4">
+                        @if(Auth::user()->hasAdminPermission('orders'))
                         <a href="{{ route('admin.orders.create') }}"
                             class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl transition shadow-sm flex items-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,10 +105,19 @@
                             </svg>
                             Create Invoice
                         </a>
+                        @endif
+                        @if(Auth::user()->hasAdminPermission('products'))
                         <a href="{{ route('admin.products.index') }}"
                             class="px-6 py-3 border border-stone-200 text-stone-600 hover:border-amber-300 hover:text-amber-600 font-bold rounded-xl transition flex items-center gap-2">
                             Manage Inventory
                         </a>
+                        @endif
+                        @if(Auth::user()->hasAdminPermission('users'))
+                        <a href="{{ route('admin.users.index') }}"
+                            class="px-6 py-3 border border-stone-200 text-stone-600 hover:border-amber-300 hover:text-amber-600 font-bold rounded-xl transition flex items-center gap-2">
+                            Manage Users
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>

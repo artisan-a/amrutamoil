@@ -19,6 +19,22 @@
 </head>
 
 <body class="font-sans antialiased text-stone-900 bg-stone-50">
+    @if(session('success'))
+    <div x-data="{ show: true }" x-show="show" x-transition.opacity.duration.500ms
+        x-init="setTimeout(() => show = false, 5000)"
+        class="fixed top-20 right-5 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div x-data="{ show: true }" x-show="show" x-transition.opacity.duration.500ms
+        x-init="setTimeout(() => show = false, 5000)"
+        class="fixed top-20 right-5 z-50 border border-red-200 bg-red-50 text-red-900 px-6 py-3 rounded-lg shadow-lg">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <div class="min-h-screen">
         @include('layouts.navigation')
 

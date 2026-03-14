@@ -15,34 +15,55 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(Auth::user()->hasAdminPermission('products'))
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
                         {{ __('Products') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('customers'))
                     <x-nav-link :href="route('admin.customers.index')"
                         :active="request()->routeIs('admin.customers.*')">
                         {{ __('Customers') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('orders'))
                     <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
                         {{ __('Invoices') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('inquiries'))
                     <x-nav-link :href="route('admin.inquiries.index')"
                         :active="request()->routeIs('admin.inquiries.*')">
                         {{ __('Inquiries') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('contacts'))
                     <x-nav-link :href="route('admin.contacts.index')" :active="request()->routeIs('admin.contacts.*')">
                         {{ __('Contacts') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('blog'))
                     <x-nav-link :href="route('admin.blog.index')" :active="request()->routeIs('admin.blog.*')">
                         {{ __('Blogs') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('advertisements'))
                     <x-nav-link :href="route('admin.advertisements.index')"
                         :active="request()->routeIs('admin.advertisements.*') && !request()->routeIs('admin.advertisements.ticker.*')">
                         {{ __('Advertisements') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('ticker_ad'))
                     <x-nav-link :href="route('admin.advertisements.ticker.edit')"
                         :active="request()->routeIs('admin.advertisements.ticker.*')">
                         {{ __('Ticker Ad') }}
                     </x-nav-link>
+                    @endif
+                    @if(Auth::user()->hasAdminPermission('users'))
+                    <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -105,36 +126,57 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(Auth::user()->hasAdminPermission('products'))
             <x-responsive-nav-link :href="route('admin.products.index')"
                 :active="request()->routeIs('admin.products.*')">
                 {{ __('Products') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('customers'))
             <x-responsive-nav-link :href="route('admin.customers.index')"
                 :active="request()->routeIs('admin.customers.*')">
                 {{ __('Customers') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('orders'))
             <x-responsive-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
                 {{ __('Invoices') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('inquiries'))
             <x-responsive-nav-link :href="route('admin.inquiries.index')"
                 :active="request()->routeIs('admin.inquiries.*')">
                 {{ __('Inquiries') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('contacts'))
             <x-responsive-nav-link :href="route('admin.contacts.index')"
                 :active="request()->routeIs('admin.contacts.*')">
                 {{ __('Contacts') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('blog'))
             <x-responsive-nav-link :href="route('admin.blog.index')" :active="request()->routeIs('admin.blog.*')">
                 {{ __('Blogs') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('advertisements'))
             <x-responsive-nav-link :href="route('admin.advertisements.index')"
                 :active="request()->routeIs('admin.advertisements.*') && !request()->routeIs('admin.advertisements.ticker.*')">
                 {{ __('Advertisements') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('ticker_ad'))
             <x-responsive-nav-link :href="route('admin.advertisements.ticker.edit')"
                 :active="request()->routeIs('admin.advertisements.ticker.*')">
                 {{ __('Ticker Ad') }}
             </x-responsive-nav-link>
+            @endif
+            @if(Auth::user()->hasAdminPermission('users'))
+            <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

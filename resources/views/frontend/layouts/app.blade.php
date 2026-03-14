@@ -34,6 +34,14 @@
     </div>
     @endif
 
+    @if(session('error'))
+    <div x-data="{ show: true }" x-show="show" x-transition.opacity.duration.500ms
+        x-init="setTimeout(() => show = false, 5000)"
+        class="fixed top-20 right-5 z-50 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <!-- Navigation -->
     <nav x-data="{ mobileMenuOpen: false, scrolled: false }"
         @scroll.window="scrolled = (window.pageYOffset > 20) ? true : false"

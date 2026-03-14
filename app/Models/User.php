@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_super_admin',
+        'admin_permissions',
     ];
 
     /**
@@ -44,7 +46,28 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_super_admin' => 'boolean',
+            'admin_permissions' => 'array',
         ];
+    }
+
+    public static function adminPermissionOptions(): array
+    {
+        return config('admin_permissions', []);
+    }
+
+    public function canAccessAdminPanel(): bool
+    {
+        return $this->is_super_admin || ! empty($this->admin_permissions);
+    }
+
+    public function hasAdminPermission(string $permission): bool
+    {
+        if ($this->is_super_admin) {
+            return true;
+        }
+
+        return in_array($permission, $this->admin_permissions ?? [], true);
     }
 
     public function sendPasswordResetNotification($token): void

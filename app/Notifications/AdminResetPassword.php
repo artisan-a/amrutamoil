@@ -32,7 +32,7 @@ class AdminResetPassword extends Notification
         $resetUrl = $appUrl.$resetPath;
 
         return (new MailMessage)
-            ->subject('Reset Your Admin Password')
+            ->subject('Reset Your Password')
             ->view('emails.admin-reset-password', [
                 'appUrl' => $appUrl,
                 'resetUrl' => $resetUrl,

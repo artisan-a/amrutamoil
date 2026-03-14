@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Your Admin Password</title>
+    <title>Reset Your Password</title>
 </head>
 <body style="margin:0; padding:0; background-color:#f7f4ee; font-family:Arial, Helvetica, sans-serif; color:#292524;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f7f4ee; margin:0; padding:32px 16px;">
@@ -22,7 +22,7 @@
                     <tr>
                         <td style="background-color:#ffffff; border:1px solid #eadfce; border-radius:18px; padding:40px 44px; box-shadow:0 10px 35px rgba(28, 25, 23, 0.06);">
                             <h1 style="margin:0 0 20px; font-size:30px; line-height:1.2; color:#1c1917; font-family:Georgia, 'Times New Roman', serif;">
-                                Reset Your Admin Password
+                                Reset Your Password
                             </h1>
 
                             <p style="margin:0 0 16px; font-size:17px; line-height:1.8; color:#44403c;">

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\AdvertisementController as AdminAdvertisementController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Models\Advertisement;
 
 Route::get('/', function () {
@@ -64,20 +65,21 @@ Route::get('/dashboard', function () {
     $lowStockCount = \App\Models\Product::where('stock_quantity', '<=', 5)->where('status', true)->count();
 
     return view('dashboard', compact('totalCustomers', 'totalOrders', 'totalRevenue', 'lowStockCount'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'admin.access'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::resource('products', AdminProductController::class);
-    Route::resource('inquiries', AdminInquiryController::class)->only(['index', 'show', 'destroy']);
-    Route::resource('contacts', AdminContactController::class)->only(['index', 'destroy']);
-    Route::resource('blog', AdminBlogController::class);
-    Route::get('advertisements/ticker', [AdminAdvertisementController::class, 'editTicker'])->name('advertisements.ticker.edit');
-    Route::put('advertisements/ticker', [AdminAdvertisementController::class, 'updateTicker'])->name('advertisements.ticker.update');
-    Route::resource('advertisements', AdminAdvertisementController::class)->except(['show']);
-    Route::patch('advertisements/{advertisement}/toggle', [AdminAdvertisementController::class, 'toggleStatus'])->name('advertisements.toggle');
-    Route::resource('customers', AdminCustomerController::class);
-    Route::resource('orders', AdminOrderController::class);
-    Route::get('orders/{order}/pdf', [AdminOrderController::class , 'downloadPdf'])->name('orders.pdf');
+Route::middleware(['auth', 'verified', 'admin.access'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('products', AdminProductController::class)->middleware('admin.permission:products');
+    Route::resource('inquiries', AdminInquiryController::class)->only(['index', 'show', 'destroy'])->middleware('admin.permission:inquiries');
+    Route::resource('contacts', AdminContactController::class)->only(['index', 'destroy'])->middleware('admin.permission:contacts');
+    Route::resource('blog', AdminBlogController::class)->middleware('admin.permission:blog');
+    Route::get('advertisements/ticker', [AdminAdvertisementController::class, 'editTicker'])->name('advertisements.ticker.edit')->middleware('admin.permission:ticker_ad');
+    Route::put('advertisements/ticker', [AdminAdvertisementController::class, 'updateTicker'])->name('advertisements.ticker.update')->middleware('admin.permission:ticker_ad');
+    Route::resource('advertisements', AdminAdvertisementController::class)->except(['show'])->middleware('admin.permission:advertisements');
+    Route::patch('advertisements/{advertisement}/toggle', [AdminAdvertisementController::class, 'toggleStatus'])->name('advertisements.toggle')->middleware('admin.permission:advertisements');
+    Route::resource('customers', AdminCustomerController::class)->middleware('admin.permission:customers');
+    Route::resource('orders', AdminOrderController::class)->middleware('admin.permission:orders');
+    Route::get('orders/{order}/pdf', [AdminOrderController::class , 'downloadPdf'])->name('orders.pdf')->middleware('admin.permission:orders');
+    Route::resource('users', AdminUserController::class)->except(['show'])->middleware('admin.permission:users');
 });
 
 Route::middleware('auth')->group(function () {
