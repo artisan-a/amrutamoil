@@ -28,15 +28,15 @@ class AdminResetPassword extends Notification
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false);
 
-        $resetUrl = rtrim(config('app.url'), '/').$resetPath;
+        $appUrl = rtrim(config('app.url'), '/');
+        $resetUrl = $appUrl.$resetPath;
 
         return (new MailMessage)
             ->subject('Reset Your Admin Password')
-            ->greeting('Hello,')
-            ->line('We received a request to reset your Amrutam admin panel password.')
-            ->line('Use the button below to choose a new password for your admin account.')
-            ->action('Reset Admin Password', $resetUrl)
-            ->line('If you did not request a password reset, you can safely ignore this email.')
-            ->salutation('Regards,'.PHP_EOL.'Amrutam');
+            ->view('emails.admin-reset-password', [
+                'appUrl' => $appUrl,
+                'resetUrl' => $resetUrl,
+                'year' => now()->year,
+            ]);
     }
 }
