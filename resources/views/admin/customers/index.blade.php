@@ -78,7 +78,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div
-                                        class="flex gap-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition duration-200">
+                                        class="flex gap-4 opacity-100 transition duration-200">
                                         <a href="{{ route('admin.customers.edit', $customer) }}"
                                             class="text-amber-600 hover:text-amber-800 font-semibold inline-flex items-center gap-1">
                                             Edit
